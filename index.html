@@ -1,0 +1,107 @@
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AFT AIRDROP</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 20px;
+      background: #0b1020;
+      color: white;
+      font-family: Tahoma, sans-serif;
+    }
+    .container { max-width: 480px; margin: auto; }
+    .header {
+      text-align: center;
+      padding: 30px 10px;
+    }
+    .logo {
+      font-size: 34px;
+      font-weight: bold;
+      color: #55d6ff;
+    }
+    .subtitle { color: #9ba9c4; margin-top: 10px; }
+    .card {
+      background: #151e33;
+      border: 1px solid #263650;
+      border-radius: 18px;
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+    .balance {
+      font-size: 32px;
+      color: #55d6ff;
+      font-weight: bold;
+      margin: 15px 0;
+    }
+    button {
+      width: 100%;
+      border: none;
+      padding: 15px;
+      border-radius: 12px;
+      background: #35bdf2;
+      color: #06111e;
+      font-size: 16px;
+      font-weight: bold;
+      margin-top: 12px;
+      cursor: pointer;
+    }
+    .muted { color: #9ba9c4; }
+    .task { border-bottom: 1px solid #293750; padding: 12px 0; }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <div class="logo">🚀 AFT AIRDROP</div>
+    <div class="subtitle">دنیای درآمد دیجیتال شما</div>
+  </div>
+
+  <div class="card">
+    <div class="muted">خوش آمدید</div>
+    <h3 id="username">کاربر عزیز</h3>
+    <div class="muted">موجودی امتیاز شما</div>
+    <div class="balance" id="balance">0 AFT</div>
+  </div>
+
+  <div class="card">
+    <h3>🎁 مأموریت‌های روزانه</h3>
+    <div class="task">عضویت در پروژه‌های ایردراپ</div>
+    <div class="task">دعوت از دوستان</div>
+    <div class="task">دریافت اخبار پروژه‌ها</div>
+    <p class="muted">به‌زودی مأموریت‌ها فعال می‌شوند.</p>
+  </div>
+
+  <div class="card">
+    <h3>👥 دعوت از دوستان</h3>
+    <p class="muted">دوستان خود را به AFT دعوت کنید.</p>
+    <button onclick="invite()">دعوت از دوستان</button>
+  </div>
+</div>
+
+<script>
+  const tg = window.Telegram.WebApp;
+  tg.ready();
+  tg.expand();
+
+  const user = tg.initDataUnsafe?.user;
+  if (user) {
+    document.getElementById("username").textContent =
+      user.first_name || "کاربر عزیز";
+  }
+
+  function invite() {
+    const link = "https://t.me/AFT_AIRDROP_bot?start=" +
+      (user ? user.id : "");
+    tg.openTelegramLink(
+      "https://t.me/share/url?url=" + encodeURIComponent(link)
+    );
+  }
+</script>
+</body>
+</html>
